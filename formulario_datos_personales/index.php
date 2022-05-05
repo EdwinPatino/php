@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
 <body>
     <main class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 py-4 text-center">
                 <h1>Formulario datos personales</h1>
             </div>
         </div>
@@ -22,16 +22,20 @@
                         <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
                     </div>
                     <div class="pb-3">
+                        <label for="">Apellido:*</label>
+                        <input type="text" name="txtApellido" id="txtApellido" class="form-control" required>
+                    </div>
+                    <div class="pb-3">
                         <label for="">DNI:*</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+                        <input type="text" name="txtDni" id="txtDni" class="form-control" required>
                     </div>
                     <div class="pb-3">
                         <label for="">Teléfono:*</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+                        <input type="text" name="txtTelefono" id="txtTelefono" class="form-control" required>
                     </div>
                     <div class="pb-3">
                         <label for="">Edad:*</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+                        <input type="text" name="txtEdad" id="txtEdad" class="form-control" required>
                     </div>
                     <div class="pb-3">
                         <button type="submit" class="btn btn-primary float-end">ENVIAR</button>
