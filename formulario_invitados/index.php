@@ -12,7 +12,8 @@ if(file_exists("invitados.txt")){
     //Sino el array queda como un array vacio
     $aInvitados = array();
 }
-//print_r($strJson);
+//echo gettype($aInvitados);
+//print_r($aInvitados);
 $mensaje = "";
 if($_POST){
     //si el DNI ingresado se encuentra en la lista mostrará un mensaje de bienvenido
