@@ -5,27 +5,42 @@ error_reporting(E_ALL);
 
 //Si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array
 //los DNIs permitidos
-if(file_exists("tareas.txt")){
+if(file_exists("invitados.txt")){
     $strJson = file_get_contents("invitados.txt");
-    $aTareas = json_decode($strJson, true);
+    $aInvitados = explode(",", $strJson);
 }else{
     //Sino el array queda como un array vacio
     $aInvitados = array();
 }
-
-
+//print_r($strJson);
+$mensaje = "";
 if($_POST){
+    //si el DNI ingresado se encuentra en la lista mostrará un mensaje de bienvenido
+    //si no un mensaje de no se encuentra en la lista de invitados
     if(isset($_POST["btnProcesar"])){
-        //si el DNI ingresado se encuentra en la lista mostrará un mensaje de bienvenido
-
-        //si no un mensaje de no se encuentra en la lista de invitados
+        $dni = $_POST["txtDni"];
+        if(in_array($dni, $aInvitados)){
+            $mensaje = "Bienvenid@ $dni a la fiesta";
+            $alert = "success";
+        }else{
+            $mensaje = "No se encuentra en la lista de ivitados.";
+            $alert = "danger";
+        }
     }
+
+    //Si el codigo es verde entonces mostrará Su código de acceso es ....
+    //Sino Ud. no tiene pase VIP
     if(isset($_POST["btnVip"])){
-        //Si el codigo es verde entonces mostrará Su código de acceso es ....
-        //Sino Ud. no tiene pase VIP
+        $codigo = $_POST["txtCodigo"];
+        if($codigo == "verde"){
+            $mensaje = "Su código de acceso es " . rand(1000,9999);
+            $alert = "success";
+        }else{
+            $mensaje = "Ud. no tiene pase vip.";
+            $alert = "danger";
+        }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +57,11 @@ if($_POST){
         <div class="row">
             <div class="col-12 pt-3">
                 <h1 class="pb-3">Lista de invitados</h1>
+                <?php if($mensaje != ""):?>
+                    <div class="alert alert-<?php echo $alert; ?>" role="alert">
+                        <?php echo $mensaje; ?>
+                    </div>
+                <?php endif; ?>
                 <p>Complete el siguiente formulario</p>
             </div>
         </div>
@@ -51,12 +71,12 @@ if($_POST){
                     <div class="pt-3">
                         <label for="txtDni">Ingrese el DNI:</label>
                         <input type="text" name="txtDni" id="txtDni" class="form-control mt-3">
-                        <button type="submit" id="btnProcesar" name="btnProcesar" class="btn btn-primary text-center">Verificar invitado</button>
+                        <input type="submit" id="btnProcesar" name="btnProcesar" class="btn btn-primary" value="Verificar invitado">
                     </div>
                     <div class="pt-3">
                         <label for="txtCodigo">Ingresa el código secreto para el pase VIP:</label>
                         <input type="text" name="txtCodigo" id="txtCodigo" class="form-control mt-3">
-                        <button type="submit" id="btnVip" name="btnVip" class="btn btn-primary text-center">Verificar código</button>
+                        <input type="submit" id="btnVip" name="btnVip" class="btn btn-primary" value="Verificar código">
                     </div>
                 </form>
             </div>
