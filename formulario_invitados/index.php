@@ -4,8 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $mensaje = "";
 
-//echo gettype($aInvitados);
-//print_r($aInvitados);
 
 if($_POST){
     //Si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array
@@ -48,7 +46,7 @@ if($_POST){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
