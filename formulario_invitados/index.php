@@ -2,20 +2,23 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+$mensaje = "";
 
-//Si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array
-//los DNIs permitidos
-if(file_exists("invitados.txt")){
-    $strJson = file_get_contents("invitados.txt");
-    $aInvitados = explode(",", $strJson);
-}else{
-    //Sino el array queda como un array vacio
-    $aInvitados = array();
-}
 //echo gettype($aInvitados);
 //print_r($aInvitados);
-$mensaje = "";
+
 if($_POST){
+    //Si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array
+    //los DNIs permitidos
+    if(file_exists("invitados.txt")){
+        $strJson = file_get_contents("invitados.txt");
+        $aInvitados = explode(",", $strJson);
+    }else{
+        //Sino el array queda como un array vacio
+        $aInvitados = array();
+    }
+    //echo gettype($aInvitados);
+    //print_r($aInvitados);
     //si el DNI ingresado se encuentra en la lista mostrará un mensaje de bienvenido
     //si no un mensaje de no se encuentra en la lista de invitados
     if(isset($_POST["btnProcesar"])){
