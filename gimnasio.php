@@ -1,8 +1,4 @@
 <?php
-
-use Alumno as GlobalAlumno;
-use Persona as GlobalPersona;
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -12,6 +8,20 @@ class Persona{
     protected $nombre;
     protected $correo;
     protected $celular;
+
+    public function __construct($dni,$nombre,$correo,$celular){
+        $this->dni = $dni;
+        $this->combre = $nombre;
+        $this->correo = $correo;
+        $this->celular = $celular;
+    }
+
+    public function imprimir(){
+        echo "DNI:" . $this->dni . "<br>";
+        echo "Nombre:" . $this->nombre . "<br>";
+        echo "Correo:" . $this->correo . "<br>";
+        echo "Celular:" . $this->celular . "<br>";
+    }
 }
 
 class Alumno extends Persona{
@@ -21,11 +31,13 @@ class Alumno extends Persona{
     private $aptoFisico;
     private $presentismo;
     
-    public function __construct($dni="",$nombre="",$correo="",$celular="",$fechaNac=""){
+    public function __construct($dni,$nombre,$correo,$celular,$fechaNac){
+        
         $this->peso = 0.0;
         $this->altura = 0.0;
         $this->aptoFisico = false;
         $this->presentismo = 0.0;
+        
     }
 
     public function __get($propiedad){
@@ -37,14 +49,16 @@ class Alumno extends Persona{
     }
 
     public function setFichaMedica($peso,$altura,$aptoFisico){
-
+        $this->peso = $peso;
+        $this->altura = $altura;
+        $this->aptoFisico = $aptoFisico;
     }
 }
 
 class Entrenador extends Persona{
     private $aClases;
 
-    public function __construct($dni="",$nombre="",$correo="",$celular=""){
+    public function __construct($dni,$nombre,$correo,$celular){
         $this->aClases = array();
     }
 
@@ -56,8 +70,8 @@ class Entrenador extends Persona{
         $this->$propiedad = $valor;
     }
 
-    public function asignarClase(){
-
+    public function asignarClase($clase){
+        $this->aClases[] = $clase;
     }
 }
 
@@ -78,16 +92,24 @@ class Clase{
         $this->$propiedad = $valor;
     }
 
-    public function asignarEntrenador(){
-
+    public function asignarEntrenador($entrenador){
+        $this->entrenador = $entrenador;
     }
 
-    public function inscribirAlumno(){
-
+    public function inscribirAlumno($alumno){
+        $this->aAlumnos[] = $alumno;
     }
 
     public function imprimirListado(){
-
+        echo "Nombre de la clase: ". $this->nombre . "<br>";
+        echo "Entrenador: ". $this->entrenador->nombre . "<br>";
+        echo "Alumnos: <br>";
+        foreach($this->aAlumnos as $alumno){
+            echo "DNI: ". $alumno->dni . "<br>";
+            echo "Nombre: ". $alumno->nombre . "<br>";
+            echo "Correo: ". $alumno->correo . "<br>";
+            echo "Celular: ". $alumno->celular . "<br><br>";
+        }
     }
 }
 
@@ -120,10 +142,10 @@ $clase1->inscribirAlumno($alumno3);
 $clase1->inscribirAlumno($alumno4);
 $clase1->imprimirListado();
 
-$clase1 = new Clase();
-$clase1->nombre = "Zumba";
-$clase1->asignarEntrenador($entrenador2);
-$clase1->inscribirAlumno($alumno1);
-$clase1->inscribirAlumno($alumno2);
-$clase1->inscribirAlumno($alumno3);
-$clase1->imprimirListado();
+$clase2 = new Clase();
+$clase2->nombre = "Zumba";
+$clase2->asignarEntrenador($entrenador2);
+$clase2->inscribirAlumno($alumno1);
+$clase2->inscribirAlumno($alumno2);
+$clase2->inscribirAlumno($alumno3);
+$clase2->imprimirListado();
