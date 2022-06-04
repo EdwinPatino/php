@@ -3,100 +3,89 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-abstract class Persona{
+abstract class Persona {
     protected $dni;
     protected $nombre;
     protected $correo;
     protected $celular;
 
-    public function __construct($dni,$nombre,$correo,$celular){
+    public function __construct($dni, $nombre, $correo, $celular) {
         $this->dni = $dni;
-        $this->combre = $nombre;
+        $this->nombre = $nombre;
         $this->correo = $correo;
         $this->celular = $celular;
     }
 
-    public function imprimir(){
-        echo "DNI:" . $this->dni . "<br>";
-        echo "Nombre:" . $this->nombre . "<br>";
-        echo "Correo:" . $this->correo . "<br>";
-        echo "Celular:" . $this->celular . "<br>";
-    }
+    abstract public function imprimir();
+
 }
 
-class Alumno extends Persona{
+class Entrenador extends Persona{
+    
+    private $aClases;
+
+     public function __construct($dni, $nombre, $correo, $celular) {
+        parent::__construct($dni, $nombre, $correo, $celular);//este es el constructor de la clase persona
+        $this->aClases = array();
+    }
+
+    public function __get($propiedad) {
+        return $this->$propiedad;
+    }
+
+    public function __set($propiedad, $valor) {
+        $this->$propiedad = $valor;
+    }
+
+}
+
+class Alumno extends Persona {
+
     private $fechaNac;
     private $peso;
     private $altura;
     private $bAptoFisico;
     private $presentismo;
-    
-    public function __construct($dni,$nombre,$correo,$celular,$fechaNac){
-        $this->dni = $dni;
-        $this->nombre = $nombre;
-        $this->correo = $correo;
-        $this->celular = $celular;
-        $this->fechaNac = $fechaNac;  
+
+    public function __construct($dni, $nombre, $correo, $celular, $fechaNac) {
+        parent::__construct($dni, $nombre, $correo, $celular);
+        $this->fechaNac = $fechaNac;
         $this->peso = 0.0;
         $this->altura = 0.0;
         $this->bAptoFisico = false;
         $this->presentismo = 0.0;
-        
     }
 
-    public function __get($propiedad){
+    public function __get($propiedad) {
         return $this->$propiedad;
     }
 
-    public function __set($propiedad, $valor){
+    public function __set($propiedad, $valor) {
         $this->$propiedad = $valor;
     }
 
-    public function setFichaMedica($peso,$altura,$bAptoFisico){
+    public function setFichaMedica($peso, $altura, $bAptoFisico){
         $this->peso = $peso;
         $this->altura = $altura;
         $this->bAptoFisico = $bAptoFisico;
     }
-}
 
-class Entrenador extends Persona{
-    private $aClases;
-
-    public function __construct($dni,$nombre,$correo,$celular){
-        $this->dni = $dni;
-        $this->nombre = $nombre;
-        $this->correo = $correo;
-        $this->celular = $celular;
-        $this->aClases = array();
-    }
-
-    public function __get($propiedad){
-        return $this->$propiedad;
-    }
-
-    public function __set($propiedad, $valor){
-        $this->$propiedad = $valor;
-    }
-
-    public function asignarClase($clase){
-        $this->aClases[] = $clase;
-    }
 }
 
 class Clase{
-    private $nombre;
-    private $entrenador;
-    private $aAlumnos;
+    private $nombre;//string
+    private $entrenador;//objeto
+    private $aAlumnos;//array de objetos
 
-    public function __construct(){
+    public function __construct() {
         $this->aAlumnos = array();
     }
 
-    public function __get($propiedad){
+    public function __get($propiedad) {
         return $this->$propiedad;
     }
 
-    public function __set($propiedad, $valor){
+    public function __set($propiedad, $valor) {
         $this->$propiedad = $valor;
     }
 
@@ -109,16 +98,17 @@ class Clase{
     }
 
     public function imprimirListado(){
-        echo "Nombre de la clase: ". $this->nombre . "<br>";
-        echo "Entrenador: ". $this->entrenador->nombre . "<br><br>";
-        echo "Alumnos: <br>";
+        echo "<table class='table table-bordered table-striped table-hover'>";
+        echo "<tr><th class='table-dark text-center' colspan='4'>Clase: " . $this->nombre . "</th></tr>";
+        echo "<tr><th colspan='2'>Entrenador:</th><td colspan='2'>" . $this->entrenador->nombre . "</td></tr>";
+        echo "<tr><th colspan='4'>Alumnos inscritos:</th></tr>";
+        echo "<tr><th>DNI</th><th>Nombre</th><th>Correo</th><th>Celular</th>";
         foreach($this->aAlumnos as $alumno){
-            echo "DNI: ". $alumno->dni . " Nombre: " . $alumno->nombre . "<br>";
-            echo "Correo: ". $alumno->correo . " Celular: " . $alumno->celular . "<br><br>";
+            echo "<tr><td>" . number_format($alumno->dni, 0, ",", ".") . "</td><td>" . $alumno->nombre . "</td><td>" . $alumno->correo . "</td><td>" . $alumno->celular . "</td></tr>"; 
         }
+        echo "</table>";
     }
 }
-
 
 //Desarrollo del programa
 $entrenador1 = new Entrenador("34987789","Miguel Ocampo","miguel@gmail.com","11678634");
