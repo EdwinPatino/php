@@ -12,7 +12,7 @@ $pg = "Formulario tipo de producto";
 if($_POST){
     if(isset($_POST["btnGuardar"])){
         if(isset($_GET["id"]) && $_GET["id"] > 0){
-              //Actualizo un tipo prducto existente
+              //Actualizo un tipo producto existente
               $tipoProducto->actualizar();
         } else {
             //Es nuevo
@@ -25,12 +25,11 @@ if($_POST){
         $tipoProducto->eliminar();
         header("Location: tipoproducto-listado.php");
     }
-} 
+}
 
 if(isset($_GET["id"]) && $_GET["id"] > 0){
     $tipoProducto->obtenerPorId();
 }
-
 
 include_once("header.php"); 
 ?>
@@ -59,7 +58,7 @@ include_once("header.php");
             <div class="row">
                 <div class="col-6 form-group">
                     <label for="txtNombre">Nombre:</label>
-                    <input type="text" required class="form-control" name="txtNombre" id="txtNombre" value="<?php echo $tipoProducto->nombre ?>">
+                    <input type="text" required class="form-control" name="txtNombre" id="txtNombre" required value="<?php echo $tipoProducto->nombre; ?>">
                 </div>
                 
             </div>

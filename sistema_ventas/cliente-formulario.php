@@ -71,19 +71,19 @@ include_once("header.php");
             <div class="row">
                 <div class="col-6 form-group">
                     <label for="txtNombre">Nombre:</label>
-                    <input type="text" required class="form-control" name="txtNombre" id="txtNombre" value="<?php echo $cliente->nombre ?>">
+                    <input type="text" required class="form-control" name="txtNombre" id="txtNombre" value="<?php echo $cliente->nombre; ?>">
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtCuit">CUIT:</label>
-                    <input type="text" required class="form-control" name="txtCuit" id="txtCuit" value="<?php echo $cliente->cuit ?>" maxlength="11">
+                    <input type="text" required class="form-control" name="txtCuit" id="txtCuit" value="<?php echo $cliente->cuit; ?>" maxlength="11">
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtCorreo">Correo:</label>
-                    <input type="" class="form-control" name="txtCorreo" id="txtCorreo" required value="<?php echo $cliente->correo ?>">
+                    <input type="" class="form-control" name="txtCorreo" id="txtCorreo" required value="<?php echo $cliente->correo; ?>">
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtTelefono">Teléfono:</label>
-                    <input type="number" class="form-control" name="txtTelefono" id="txtTelefono" value="<?php echo $cliente->telefono ?>">
+                    <input type="txt" class="form-control" name="txtTelefono" id="txtTelefono" value="<?php echo $cliente->telefono; ?>">
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtFechaNac" class="d-block">Fecha de nacimiento:</label>

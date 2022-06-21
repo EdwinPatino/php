@@ -12,7 +12,7 @@ class Producto
 
     public function __construct()
     {
-        $this->cantidad = 0.0;
+        $this->cantidad = 0;
         $this->precio = 0.0;
     }
 
@@ -29,12 +29,11 @@ class Producto
 
     public function cargarFormulario($request)
     {
-        $this->idclidproducto = isset($request["id"]) ? $request["id"] : "";
+        $this->idproducto = isset($request["id"]) ? $request["id"] : "";
         $this->nombre = isset($request["txtNombre"]) ? $request["txtNombre"] : "";
         $this->cantidad = isset($request["txtCantidad"]) ? $request["txtCantidad"] : "";
         $this->precio = isset($request["txtPrecio"]) ? $request["txtPrecio"] : "";
         $this->descripcion = isset($request["txtDescripcion"]) ? $request["txtDescripcion"] : "";
-        $this->imagen = isset($request["img"]) ? $request["img"] : "";
         $this->fk_idtipoproducto = isset($request["lstProducto"]) ? $request["lstProducto"] : "";
         
     }
@@ -82,7 +81,6 @@ class Producto
                 imagen =  '$this->imagen',
                 fk_idtipoproducto =  '$this->fk_idtipoproducto'
                 WHERE idproducto = $this->idproducto";
-
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
@@ -94,6 +92,8 @@ class Producto
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE, Config::BBDD_PORT);
         $sql = "DELETE FROM productos WHERE idproducto = " . $this->idproducto;
         //Ejecuta la query
+        print_r($sql);
+        
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
@@ -109,9 +109,11 @@ class Producto
                         precio,
                         descripcion,
                         imagen,
-                        fk_idtipoproducto,
+                        fk_idtipoproducto
                 FROM productos
                 WHERE idproducto = $this->idproducto";
+        //print_r($sql);
+        //exit;
         if (!$resultado = $mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
