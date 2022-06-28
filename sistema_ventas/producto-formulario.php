@@ -12,17 +12,54 @@ $producto->cargarFormulario($_REQUEST);
 
 if($_POST){
     if(isset($_POST["btnGuardar"])){
+        $nombreImagen = "";
+        //Almacenamos la imagen en el servidor
+        if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
+            $nombreRandom = date("Ymdhmsi");
+            $archivoTmp = $_FILES["imagen"]["tmp_name"];
+            $extension = pathinfo($_FILES["imagen"]["name"], PATHINFO_EXTENSION);
+            $nombreImagen = "$nombreRandom.$extension";
+            if ($extension == "jpg" || $extension == "jpeg" || $extension == "png"){
+                move_uploaded_file($archivoTmp, "files/$nombreImagen");
+            }
+        }
+
         if(isset($_GET["id"]) && $_GET["id"] > 0){
-              //Actualizo un cliente existente
+            
+            $productoAnt = new Producto();
+            $productoAnt->idproducto = $_GET["id"];
+            $productoAnt->obtenerPorId();
+
+            //Si es una actualizacion y se sube una imagen, elimina la anterior
+            if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
+                if ($productoAnt->imagen != "") {
+                    if(file_exists("files/". $productoAnt->imagen)){
+                        unlink("files/". $productoAnt->imagen);
+                    }
+                }
+                
+            } else {
+                //Si no viene ninguna imagen, setea como imagen la que habia previamente
+                $nombreImagen = $$productoAnt->imagen;
+            }
+            $producto->imagen = $nombreImagen;
+            //Actualizo un cliente existente
             $producto->actualizar();
         } else {
             //Es nuevo
+            $producto->imagen = $nombreImagen;
             $producto->insertar();
         }
         $msg["texto"] = "Guardado correctamente";
         $msg["codigo"] = "alert-success";
 
     } else if(isset($_POST["btnBorrar"])){
+        $productoAnt = new Producto();
+        $productoAnt->idproducto = $_GET["id"];
+        $productoAnt->obtenerPorId();
+        if(file_exists("files/". $productoAnt->imagen)){
+            unlink("files/". $productoAnt->imagen);
+        }
         $producto->eliminar();
         header("Location: producto-listado.php");
     }
@@ -92,7 +129,7 @@ include_once("header.php");
                 <div class="col-6 form-group">
                     <label for="imagen">Imagen:</label>
                     <input type="file" class="form-control-file" name="imagen" id="imagen">
-                    <img src="" class="img-thumbnail">
+                    <img src="files/<?php echo $producto->imagen; ?>" class="img-thumbnail">
                 </div>
             </div>
             

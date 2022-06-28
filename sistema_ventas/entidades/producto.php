@@ -7,7 +7,7 @@ class Producto
     private $cantidad;
     private $precio;
     private $descripcion;
-    private $imagen;
+    private $imagen ;
     private $fk_idtipoproducto;
 
     public function __construct()
@@ -125,6 +125,7 @@ class Producto
             $this->cantidad = $fila["cantidad"];
             $this->precio = $fila["precio"];
             $this->descripcion = $fila["descripcion"];
+            $this->imagen = $fila["imagen"];
             $this->fk_idtipoproducto = $fila["fk_idtipoproducto"];
         }
         $mysqli->close();
