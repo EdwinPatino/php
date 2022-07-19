@@ -65,6 +65,5 @@ function promediar($aNumeros){
             </div>
         </div>
     </main>
-    
 </body>
 </html>
