@@ -1,0 +1,13 @@
+<script>
+    const aValores =["150.00", "200.30", 500, 99.80];
+    function sumatoria(aNumeros){
+        let suma = 0;
+        for(let i=0; i<aNumeros.length;i++){
+            typeof(aNumeros[i]) == 'string' ? suma += parseFloat(aNumeros[i]):suma += aNumeros[i];
+        }
+        return suma;
+    }
+
+    console.log(sumatoria(aValores));
+
+</script>
