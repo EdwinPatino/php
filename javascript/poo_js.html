@@ -1,0 +1,20 @@
+<script>
+    var persona = {
+        edad: 30,
+        nombre: "Edwin",
+        apellido: "Patino",
+        sexo: "M",
+        estadoCivil: "Union libre",
+        aPeliculas: ["One", "Two", "Three", "Four"],
+        cumplirAnios: function(){
+            persona.edad++;
+        },
+        comer: function(comida){
+            console.log("estoy comiendo " + comida);
+        } 
+    };
+    console.log(persona);
+    persona.comer("Fideos");
+    persona.cumplirAnios();
+    console.log(persona)
+</script>

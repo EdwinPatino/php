@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<script>
+    let espectador1 = {
+        dni: 1023916716,
+        nombre: "Edwin"
+    };
+    let espectador2 = {
+        dni: 1021685672,
+        nombre: "Sofia"
+    };
+    let pelicula1 ={
+        nombre: "ONE",
+        importeEntrada: 100
+    };
+    let pelicula2 ={
+        nombre: "TWO",
+        importeEntrada: 120
+    };
+    let sala1 = {
+        nombre: "Sala 1",
+        pelicula: pelicula2,
+        aEspectadores: [espectador1]
+    };
+    let sala2 = {
+        nombre: "Sala 2",
+        pelicula: pelicula1,
+        aEspectadores: [espectador2]
+    };
+    let cine ={
+        nombre: "Showcase",
+        domicilio: "New York",
+        aSalas: [sala1, sala2],
+        imprimirEstadistica: function(){
+            document.write(`<main class="container">
+        <div class="row">
+            <div class="col-12 text-center p-3">
+                <h1>Cine ${cine.nombre}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover border">
+                    <thead>
+                        <tr>
+                            <th>Sala</th>
+                            <th>Pelicula</th>
+                            <th>Espectadores</th>
+                            <th>Ganancia</th>
+                        </tr>
+                    </thead>`);
+    cine.aSalas.forEach(function(item, indice){
+        document.write(`<tr>
+                        <td>${item.nombre}</td>
+                        <td>${item.pelicula.nombre}</td>
+                        <td>${item.aEspectadores.length}</td>
+                        <td>${item.pelicula.importeEntrada*item.aEspectadores.length}</td>
+                    </tr>`);
+    });
+    document.write(`</table>
+            </div>
+        </div>
+    </main>`);
+        }
+    };
+
+    cine.imprimirEstadistica();
+                
+</script>
+<body>
+    
+                    
+        
+</body>
+</html>
