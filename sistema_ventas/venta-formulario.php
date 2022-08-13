@@ -29,6 +29,18 @@ if($_POST){
     }
 } 
 
+if(isset($_GET["do"]) && $_GET["do"] == "buscarProducto"){
+    $aResultado = array();
+    $idProducto = $_GET["id"];
+    $producto = new Producto();
+    $producto->idproducto = $idProducto;
+    $producto->obtenerPorId();
+    $aResultado["precio"] = $producto->precio;
+    $aResultado["cantidad"] = $producto->cantidad;
+    echo json_encode($aResultado);
+    exit;
+}
+
 if(isset($_GET["id"]) && $_GET["id"] > 0){
     $venta->obtenerPorId();
 }
@@ -120,7 +132,7 @@ include_once("header.php");
                 </div>
                 <div class="col-6 form-group">
                     <label for="lstProducto" class="d-block">Producto:</label>
-                    <select class="form-control selectpicker"  name="lstProducto" id="lstProducto" required>
+                    <select class="form-control selectpicker"  name="lstProducto" id="lstProducto" onchange="fBuscarPrecio();">
                         <option value="" disabled selected>Seleccionar</option>
                         <?php foreach($aProductos as $produc): ?>
                             <?php if($produc->idproducto == $venta->fk_idproducto): ?>
@@ -133,11 +145,13 @@ include_once("header.php");
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtPrecio">Precio Unitario:</label>
-                    <input type="" class="form-control" name="txtPrecio" id="txtPrecio" required value="<?php echo $venta->preciounitario; ?>">
+                    <input type="txt" class="form-control" name="txtPrecio" id="txtPrecio" required value="$ <?php echo $venta->preciounitario; ?>" disabled>
+                    <input type="hidden" class="form-control" name="txtPrecioUni" id="txtPrecioUni" value="<?php echo $venta->preciounitario; ?>">
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtCantidad">Cantidad:</label>
-                    <input type="txt" class="form-control" name="txtCantidad" id="txtCantidad" required value="<?php echo $venta->cantidad; ?>">
+                    <input type="txt" class="form-control" name="txtCantidad" id="txtCantidad" required value="<?php echo $venta->cantidad; ?>" onchange="fCalcularTotal();">
+                    <span id="msgStock" class="text-danger" style="display:none;">No hay stock suficiente</span>
                 </div>
                 <div class="col-6 form-group">
                     <label for="txtTotal">Total:</label>
@@ -151,5 +165,50 @@ include_once("header.php");
 
       </div>
       <!-- End of Main Content -->
+
+
+<script>
+    function fBuscarPrecio(){
+    let idProducto = $("#lstProducto option:selected").val();
+      $.ajax({
+            type: "GET",
+            url: "venta-formulario.php?do=buscarProducto",
+            data: { id:idProducto },
+            async: true,
+            dataType: "json",
+            success: function (respuesta) {
+                strResultado = Intl.NumberFormat("es-AR", {style: 'currency', currency: 'ARS'}).format(respuesta.precio);
+                $("#txtPrecio").val(strResultado);
+                $("#txtPrecioUni").val(respuesta.precio);
+            }
+        });
+
+}
+
+function fCalcularTotal(){
+    var idProducto = $("#lstProducto option:selected").val();
+    var precio = parseFloat($('#txtPrecioUni').val());
+    var cantidad = parseInt($('#txtCantidad').val());
+
+     $.ajax({
+        type: "GET",
+        url: "venta-formulario.php?do=buscarProducto",
+        data: { id:idProducto },
+        async: true,
+        dataType: "json",
+        success: function (respuesta) {
+            let resultado = 0;
+            if(cantidad <= parseInt(respuesta.cantidad)){
+                resultado = precio * cantidad;
+                 $("#msgStock").hide();
+            } else {
+                $("#msgStock").show();
+            }
+            strResultado = Intl.NumberFormat("es-AR", {style: 'currency', currency: 'ARS'}).format(resultado);
+            $("#txtTotal").val(strResultado);
+        }
+    });   
+}
+</script>
 
 <?php include_once("footer.php"); ?>

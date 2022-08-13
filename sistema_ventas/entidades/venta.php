@@ -41,7 +41,7 @@ class Venta
         }
         $this->cantidad = isset($request["txtCantidad"]) ? $request["txtCantidad"] : "";
         $this->preciounitario = isset($request["txtPrecio"]) ? $request["txtPrecio"] : "";
-        $this->total = isset($request["txtTotal"]) ? $request["txtTotal"] : "";
+        $this->total = $this->preciounitario * $this->cantidad;
         
     }
 

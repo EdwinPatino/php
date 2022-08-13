@@ -16,6 +16,10 @@
         dni: 1021685672,
         nombre: "Sofia"
     };
+    let espectador3 = {
+        dni: 1021685,
+        nombre: "Alex"
+    };
     let pelicula1 ={
         nombre: "ONE",
         importeEntrada: 100
@@ -24,20 +28,29 @@
         nombre: "TWO",
         importeEntrada: 120
     };
+    let pelicula3 ={
+        nombre: "THREE",
+        importeEntrada: 140
+    };
     let sala1 = {
         nombre: "Sala 1",
         pelicula: pelicula2,
-        aEspectadores: [espectador1]
+        aEspectadores: [espectador1, espectador2, espectador3]
     };
     let sala2 = {
         nombre: "Sala 2",
         pelicula: pelicula1,
-        aEspectadores: [espectador2]
+        aEspectadores: [espectador2, espectador3]
+    };
+    let sala3 = {
+        nombre: "Sala 3",
+        pelicula: pelicula3,
+        aEspectadores: [espectador3, espectador1]
     };
     let cine ={
         nombre: "Showcase",
         domicilio: "New York",
-        aSalas: [sala1, sala2],
+        aSalas: [sala1, sala2, sala3],
         imprimirEstadistica: function(){
             document.write(`<main class="container">
         <div class="row">
