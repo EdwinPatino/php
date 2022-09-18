@@ -1,35 +1,46 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-use Closure next;
-use Request;
-$aUsuarios = array(
-    array('nombre' => 'Alex', 'apellido' => 'Escobar', 'telefono' => '3213211212'),
-    array('nombre' => 'Juan', 'apellido' => 'Gomez', 'telefono' => '3211231212'),
-    array('nombre' => 'Andres', 'apellido' => 'Marin', 'telefono' => '3211112223'),
-    array('nombre' => 'Angie', 'apellido' => 'Rivera', 'telefono' => '3211212121')
-);
-
-foreach ($aUsuarios as $usuario)
-{
-    echo $usuario['nombre'] . ' ' . $usuario['apellido'] . ' ' . $usuario['telefono'] . '<br>';
+function circleOfNumbers($n, $firstNumber){
+    while($firstNumber >= 0 && $firstNumber <= $n-1){
+        if($n >= 4 && $n <= 20){
+            return ($firstNumber + ($n/2) ) % $n;
+        }
+    }
 }
 
-Route::get('cookie', function(){
-	$origin_sesion = cookie('usuario', 'rol', 30);
-	$response = response("Voy a enviarte una cookie");
-	$response->withCookie($nueva_cookie);
-	return $response;
-});
+//echo (circleOfNumbers(10,7));
 
-class LastSession{
+function centuryFromYear($year) {
+    return ceil($year / 100);
+}
 
-    public function handle($request, Closure $next){
-        if ("lifetime" == 1440){
-            return redirect('/sesiones');
+//echo centuryFromYear(1905);
+
+function checkPalindrome($inputString) {
+    return strrev($inputString) == $inputString;
+}
+
+//echo (checkPalindrome("acaramanamaraca"));
+
+function almostIncreasingSequence($sequence) {
+    $mistakes = 0;
+    
+    for($i = 0; $i < count($sequence) -1; $i++){
+        if($sequence[$i] >= $sequence[$i+1]){
+            if(count($sequence) > $i+2 && 
+               $sequence[$i] >= $sequence[$i+2] &&
+               $i > 0 && 
+               $sequence[$i-1] >= $sequence[$i+1]){
+                   return false;
+               }
+               else
+                    $mistakes++;
         }
-        return $next($request);
+        
+        if($mistakes > 1)
+            return false;
     }
     
+    return true;
 }
+
+echo almostIncreasingSequence(1, 3, 2, 1);

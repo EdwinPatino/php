@@ -58,7 +58,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true" aria-controls="collapseVentas">
@@ -72,7 +71,6 @@
           </div>
         </div>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
       <li class="nav-item">

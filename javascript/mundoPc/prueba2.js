@@ -1,0 +1,1 @@
+función: const suma = () => {let suma = "1" + 1; return suma; }
