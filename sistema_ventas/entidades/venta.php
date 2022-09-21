@@ -65,7 +65,7 @@ class Venta
                     $this->preciounitario,
                     $this->total
                 );";
-        // print_r($sql);exit;
+        print_r($sql);exit;
         //Ejecuta la query
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
