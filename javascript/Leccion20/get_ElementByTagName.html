@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+</head>
+<body>
+    <h1 id="cabecero">Ejemplo</h1>
+    <p id="parrafo1">Parrafo uno 1</p>
+    <p id="parrafo2">Parrafo dos 2</p>
+    <script>
+        //getElementsByName se obtienen todos los elementos con una etiqueta especifica en este caso 'p'
+        let parrafos = document.getElementsByTagName('p');
+        console.log(`No parrafos: ${parrafos.length}`);
+        for (let i=0; i<parrafos.length; i++){
+            console.log(`${i} - ${parrafos[i].innerHTML}`);
+        }
+    </script>
+</body>
+</html>

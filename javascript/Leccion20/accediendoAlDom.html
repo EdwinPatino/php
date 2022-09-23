@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+</head>
+<body>
+    <h1 id="cabecero">Ejemplo</h1>
+    <p id="parrafo">saludos</p>
+    <script>
+        //document es de tipo objeto
+        //obtenemos el objeto con el identificador con getElementById obtenemos todo
+        //con innerHTML accedemos al valor del texto
+        let cabecero = document.getElementById('cabecero').innerHTML;
+        console.log('Valor cabecero: ' + cabecero);
+        //tambien se puede asi
+        //let cabecero = document.getElementById('cabecero');
+        //console.log('Valor cabecero: '+ cabecero.innerHTML);
+        let parrafo = document.getElementById('parrafo').innerHTML;
+        console.log('Valor parrafo: ' + parrafo);
+        console.log('Saludos javascript');
+    </script>
+</body>
+</html>

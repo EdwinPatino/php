@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <style>
+        .color{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="color">Ejemplo</h1>
+    <p class="color">Parrafo uno 1</p>
+    <p class="color">Parrafo dos 2</p>
+    <script>
+        //querySelectorAll se obtienen todos los elementos con una etiqueta y clase especificas
+        //En este caso todos con etiqueta 'p' y que tengan clase 'color'
+        let elementos = document.querySelectorAll('p.color');
+        console.log(`No. elementos: ${elementos.length}`);
+        for (let elemento of elementos){
+            console.log(`${elemento.innerHTML}`);
+        }
+    </script>
+</body>
+</html>
