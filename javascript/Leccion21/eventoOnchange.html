@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <h1 id="titulo">Manejo de eventos DOM</h1>
+    <div>
+        <!--onchange detecta el cambio, en este caso detecta el cambio de la caja de texto-->
+        <label for="">Nombre: </label>
+        <!--tambien se puede obtener el valor por el id en este caso vamos a usar this-->
+        <input type="text" id="nombre" onchange="convertir(this)">
+    </div>
+</body>
+<script>
+    //este metodo cambia todo el texto a mayusculas
+    //value hace referencia al valor en este caso del input
+    function convertir(nombreInput){
+        //se selecciona el mismo texto escrito y se cambia a mayuscula
+        nombreInput.value = nombreInput.value.toUpperCase();
+    }
+</script>
+</html>

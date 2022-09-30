@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<!--onload es el evento de cuando esta cargando, en este caso es el cuerpo de la pagina-->
+<body onload="entrar()">
+    <!--this en esta linea esta apuntando a la etiqueta h1 y todo lo que contiene-->
+    <h1 id="titulo">Manejo de eventos DOM</h1>
+    <div id="mostrar"></div>
+</body>
+<script>
+    document.getElementById('titulo').onclick = cambiarTexto;
+
+    function entrar(){
+        //sale una alerta cuando se esta ingresando a la pagina
+        alert('Entrando a la pagina web');
+        let texto = '';
+        if(navigator.cookieEnabled){
+            texto = 'Cokies estan habilitadas';
+        }else{
+            texto = 'Cokies estan inhabilitadas';
+        }
+        document.getElementById('mostrar').innerHTML = texto;
+    }
+</script>
+</html>

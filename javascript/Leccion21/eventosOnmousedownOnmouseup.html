@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <!--onmousedown nos permite que cuando hagamos click realice una accion solo si se esta dando click si suelta deja de hacerlo-->
+    <!--En este caso cambiar el color-->
+    <!--onmouseup cuando soltemos el click realice otra accion-->
+    <h1 id="titulo" onmousedown="rojo(this)" onmouseup="azul(this)" onclick="verde(this)">Manejo de eventos DOM</h1>
+    
+</body>
+<script>
+    function rojo(titulo){
+        console.log('onmousedown: rojo');
+        titulo.style.color = 'red';
+    }
+    function azul(titulo){
+        console.log('onmouseup: azul');
+        titulo.style.color = 'blue';
+    }
+    function verde(titulo){
+        console.log('onclick: verde');
+        titulo.style.color = 'green';
+    }
+</script>
+</html>

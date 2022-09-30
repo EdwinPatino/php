@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <!--onmouseover nos permite que cuando pasemos el mouse por encima de este elemento hacer alguna ccion-->
+    <!--En este caso cambiar el color-->
+    <!--onmouseout cuando quitemos el mouse de encima hacer alguna accion-->
+    <h1 id="titulo" onmouseover="color(this)" onmouseout="sinColor(this)">Manejo de eventos DOM</h1>
+    
+</body>
+<script>
+    function color(titulo){
+        titulo.style.color = 'red';
+    }
+    function sinColor(titulo){
+        titulo.style.color = 'black';
+    }
+</script>
+</html>
