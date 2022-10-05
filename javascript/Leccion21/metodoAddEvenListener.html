@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <h1 id="titulo">Manejo de eventos DOM</h1>
+    <div>
+        <label for="">Nombre: </label>
+        <input type="text" id="nombre">
+    </div>
+    <div>
+        <label for="">Apellido: </label>
+        <input type="text" id="apellido">
+    </div>
+    
+</body>
+<script>
+    //addEventListener sirve para agragar un o mas eventos al elemento que estamos recuperando
+    //dentro de los parentesis de addEventListener se coloca solo el evento que queremos sin el 'on'
+    document.getElementById('nombre').addEventListener('focus', evento=>{
+        evento.target.style.background = 'pink';
+    });
+    document.getElementById('nombre').addEventListener('blur', evento=>{
+        evento.target.style.background = '';
+    });
+    
+    document.getElementById('apellido').addEventListener('focus', cambiar);
+    document.getElementById('apellido').addEventListener('blur', regresar);
+    //target hace referencia al elemento que lanzo este evento 
+    function cambiar(evento){
+        let componenete = evento.target;
+        componenete.style.background = 'yellow';
+    }
+    function regresar(evento){
+        evento.target.style.background = 'white';
+    }
+</script>
+</html>

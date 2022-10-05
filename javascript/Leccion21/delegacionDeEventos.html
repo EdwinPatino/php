@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <h1 id="titulo">Manejo de eventos DOM</h1>
+    <form action="" id="formu">
+        <div>
+            <label for="">Nombre: </label>
+            <input type="text" id="nombre">
+        </div>
+        <div>
+            <label for="">Apellido: </label>
+            <input type="text" id="apellido">
+        </div>
+</form>
+</body>
+<script>
+    //se recupera los elementos del formulario
+    //se aplica el focus y blur a todos los input del formulario, esto se habilita con true finalizando la funcion
+    const formula =  document.getElementById('formu');
+    formula.addEventListener('focus', evento=>{
+        evento.target.style.background = 'yellow';
+    }, true);
+    formula.addEventListener('blur', evento=>{
+        evento.target.style.background = '';
+    }, true);
+    
+    </script>
+</html>

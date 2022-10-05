@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de eventos DOM</title>
+</head>
+<body>
+    <!--onfocus: se cambia el foco de donde demos click al color que se desea-->
+    <!--osea cambia el background-->
+    <!--onblur: cuando se pierde el foco se cambia el color, volverlo al color original-->
+    <h1 id="titulo">Manejo de eventos DOM</h1>
+    <div>
+        <label for="">Nombre: </label>
+        <input type="text" onfocus="cambiar(this)" onblur="regresar(this)">
+    </div>
+    <div>
+        <label for="">Apellido: </label>
+        <input type="text" onfocus="cambiar(this)" onblur="regresar(this)">
+    </div>
+    
+</body>
+<script>
+    function cambiar(elementoInput){
+        elementoInput.style.background = 'yellow';
+    }
+    function regresar(elementoInput){
+        elementoInput.style.background = 'white';
+    }
+</script>
+</html>
