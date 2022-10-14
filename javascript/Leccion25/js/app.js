@@ -114,9 +114,30 @@ const crearEgresoHTML =(egreso)=>{
 }
 
 //Igual que se explica en eliminarIngreso
-const eliminarEgreso =(id)=>{
+let eliminarEgreso =(id)=>{
     let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
     egresos.splice(indiceEliminar, 1);
     cargarCabecero();
     cargarEgresos();
+}
+
+let agregarDato =()=>{
+    let forma = document.forms['forma'];
+    let tipo = forma['tipo'];
+    let descripcion = forma['descripcion'];
+    let valor = forma['valor'];
+
+    if(descripcion.value !== '' && valor.value !== ''){
+        if(tipo.value === 'ingreso'){
+            //+valor.value convierte este string a valor numerico es igual a Number
+            ingresos.push(new Ingreso(descripcion.value, +valor.value));
+            cargarCabecero();
+            cargarIngresos();
+        }
+        else if(tipo.value === 'egreso'){
+            egresos.push(new Egreso(descripcion.value, +valor.value));
+            cargarCabecero();
+            cargarEgresos();
+        }
+    }
 }
