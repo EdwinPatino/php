@@ -1,0 +1,23 @@
+<meta charset="UFT-8">
+
+<h1>PROGRAMA ADIVINAR NÚMERO </h1>
+
+<script>
+    function saltarLinea(){
+        document.write("<br>");
+    }
+
+    function imprimir(frase){
+        document.write(frase);
+        saltarLinea();    
+    }
+    var contador = 0;
+    while(contador <= 100){
+        if(contador%2 == 0){
+            imprimir("Número par: " + contador);    
+        }
+        contador += 1; //contador++
+       
+    }
+    imprimir("Fin");
+</script>

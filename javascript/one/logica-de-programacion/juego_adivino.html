@@ -1,0 +1,23 @@
+<meta charset="UFT-8">
+
+<h1>PROGRAMA ADIVINAR NÚMERO </h1>
+
+<script>
+    function saltarLinea(){
+        document.write("<br>");
+    }
+
+    function imprimir(frase){
+        document.write(frase);
+        saltarLinea();    
+    }
+    var numeroPensado = Math.round(Math.random()*10);
+    var numeroLanzado = parseInt(prompt("Ingerese numero entre 0-10"));
+
+    if(numeroLanzado == numeroPensado){
+        imprimir("Usted acertó");
+    }
+    else{
+        imprimir("Usted no acertó el numero es: " + numeroPensado);
+    }
+</script>
